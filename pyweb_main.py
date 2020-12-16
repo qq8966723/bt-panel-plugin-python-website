@@ -1,16 +1,9 @@
 #!/usr/bin/python
 # coding: utf-8
 # +-------------------------------------------------------------------
-# | 宝塔Linux面板
-# +-------------------------------------------------------------------
-# | Copyright (c) 2015-2099 宝塔软件(http://bt.cn) All rights reserved.
-# +-------------------------------------------------------------------
-# | Author: xxx <xxxx@qq.com>
+# | 宝塔python轻站
 # +-------------------------------------------------------------------
 
-#+--------------------------------------------------------------------
-#|   宝塔第三方应用开发DEMO
-#+--------------------------------------------------------------------
 import sys,os,json
 
 #设置运行目录
@@ -23,7 +16,6 @@ import public
 #from common import dict_obj
 #get = dict_obj();
 
-
 #在非命令行模式下引用面板缓存和session对象
 if __name__ != '__main__':
     from BTPanel import cache,session,redirect
@@ -35,10 +27,8 @@ if __name__ != '__main__':
     #设置session:  session['key'] = value
     #获取session:  value = session['key']
     #删除session:  del(session['key'])
-
-
 class demo_main:
-    __plugin_path = "/www/server/panel/plugin/demo/"
+    __plugin_path = "/www/server/panel/plugin/pyweb/"
     __config = None
 
     #构造方法
@@ -64,7 +54,6 @@ class demo_main:
     def index(self,args):
         return self.get_logs(args)
 
-
     #获取面板日志列表
     #传统方式访问get_logs方法：/plugin?action=a&name=demo&s=get_logs
     #使用动态路由模板输出： /demo/get_logs.html
@@ -76,13 +65,10 @@ class demo_main:
         if not 'callback' in args: args.callback = ''
         args.p = int(args.p)
         args.rows = int(args.rows)
-
         #取日志总行数
         count = public.M('logs').count()
-
         #获取分页数据
         page_data = public.get_page(count,args.p,args.rows,args.callback)
-
         #获取当前页的数据列表
         log_list = public.M('logs').order('id desc').limit(page_data['shift'] + ',' + page_data['row']).field('id,type,log,addtime').select()
         
@@ -113,13 +99,10 @@ class demo_main:
     def __set_config(self,key=None,value=None):
         #是否需要初始化配置项
         if not self.__config: self.__config = {}
-
         #是否需要设置配置值
         if key:
             self.__config[key] = value
-
         #写入到配置文件
         config_file = self.__plugin_path + 'config.json'
         public.WriteFile(config_file,json.dumps(self.__config))
         return True
-

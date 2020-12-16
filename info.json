@@ -1,9 +1,15 @@
 {
-  "title": "宝塔插件DEMO",
-  "name": "demo",
-  "ps": "宝塔插件开发示例项目",
-  "versions": "1.0",
-  "checks": "/www/server/panel/plugin/demo",
-  "author": "宝塔",
-  "home": "https://www.bt.cn"
+	"title":"宝塔python轻站",
+	"tip":"lib",
+	"name":"pyweb",
+	"type":"扩展",
+	"ps":"Python轻站，基于宝塔运行环境的轻型站点!",
+	"versions":"1.0",
+	"shell":"webhook.sh",
+	"checks":"/www/server/panel/plugin/pyweb",
+	"author":"tux",
+	"home":"http://www.sninl.com",
+	"date":"2020-07-05",
+	"default":false,
+	"display":0
 }
